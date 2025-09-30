@@ -35,7 +35,7 @@ Nesse repositório existem 2 projetos:
 
 1. A versão do Node necessária é v22.19.0. Caso não tenha instalado, baixe [aqui](https://nodejs.org/dist/v22.19.0/node-v22.19.0-x64.msi).
 2. Clone o repositório:  
-   - git clone git@github.com:LizandroMarques/GerencidorDeTarefas.gi
+   - git clone https://github.com/LizandroMarques/GerenciadorDeTarefas.git
 3. Abra o terminal, entre na pasta backend e instale as dependências:
    - cd Backend
    - npm install
