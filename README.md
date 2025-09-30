@@ -21,6 +21,7 @@ v22.19.0
 - Babel-jest
 - EsLint
 - Prettier
+- VSCode
 
 ## Observação importante
 Nesse repositório existem 2 projetos:
@@ -33,14 +34,15 @@ Nesse repositório existem 2 projetos:
 ## Executando o projeto backend
 **O projeto backend deverá ser executado primeiro e, em outro terminal, o projeto frontend.**
 
-1. A versão do Node necessária é v22.19.0. Caso não tenha instalado, baixe [aqui](https://nodejs.org/dist/v22.19.0/node-v22.19.0-x64.msi).
-2. Clone o repositório:  
+1. Instale o VSCode pelo link https://code.visualstudio.com/Download
+2. A versão do Node necessária é v22.19.0. Caso não tenha instalado, baixe [aqui](https://nodejs.org/dist/v22.19.0/node-v22.19.0-x64.msi).
+3. Clone o repositório:  
    - git clone https://github.com/LizandroMarques/GerenciadorDeTarefas.git
-3. Abra o terminal, entre na pasta backend e instale as dependências:
+4. Abra o terminal, entre na pasta backend e instale as dependências:
    - cd Backend
    - npm install
    
-4. Execute o projeto:
+5. Execute o projeto:
 	- node server.js
    
    - Aparecerá no console a mensagem:  
