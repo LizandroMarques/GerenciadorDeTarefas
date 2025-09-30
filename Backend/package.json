@@ -1,0 +1,26 @@
+{
+	"name": "gerenciadordetarefas",
+	"version": "1.0.0",
+	"description": "Projeto Gerenciador de tarefas para teste da empresa Atak Sistemas.",
+	"main": "app.js",
+	"type": "module",
+	"scripts": {
+		"test": "jest"
+	},
+	"author": "Lizandro Marques",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.28.4",
+		"@babel/preset-env": "^7.28.3",
+		"babel-jest": "^30.2.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.4",
+		"jest": "^30.2.0",
+		"prettier": "^3.6.2",
+		"supertest": "^7.1.4"
+	},
+	"dependencies": {
+		"express": "^5.1.0"
+	},
+	"keywords": []
+}
