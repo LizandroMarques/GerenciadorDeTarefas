@@ -76,7 +76,7 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
   };
 
   return (
-    <Card sx={{ margin: 2, padding: 0 }}>
+    <Card sx={{ margin: 1, padding: 0 }}>
       <CardContent>
         <Grid container spacing={2} alignItems="flex-start">
           <Grid item xs={12} sm={5} sx={{ width: "1300px" }}>

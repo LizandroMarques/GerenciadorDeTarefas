@@ -117,3 +117,10 @@ Projeto desenvolvido em **Reack** e framework **Material UI**.
 3. npm run dev (vai rodar no endereço http://localhost:5173/)
 
 OBS.: Par funcionar primeiro deverá rodar a api backend para em outro terminar rodar o projeto frontend.
+
+# PROMPTS UTILIZADOS:
+
+1. instalando e configurando o prettier em projeto node
+2. Como criar uma suite de teste com jest
+3. Alguns prompts de ajustes de layout utilizando o Material UI
+4. Outros referente a erros que tive no decorrer do projeto

@@ -1,13 +1,15 @@
-// TarefaRow.jsx
+// TarefaLinha.jsx
 import React from "react";
+import { FiberManualRecord } from "@mui/icons-material";
 import {
   TableRow,
   TableCell,
   Checkbox,
   Typography,
   IconButton,
+  TextField,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, CheckCircle, Cancel } from "@mui/icons-material";
 
 export default function TarefaLinha({
   tarefa,
@@ -19,51 +21,77 @@ export default function TarefaLinha({
     const novoStatus = tarefa.status === "Concluído" ? "Aberto" : "Concluído";
 
     const tarefaAtualizada = {
-      titulo: tarefa.titulo,
-      descricao: tarefa.descricao,
+      ...tarefa,
       status: novoStatus,
-      dataCriacao: tarefa.dataCriacao, // mantém a data original
     };
 
     onToggleStatus(tarefa.id, tarefaAtualizada);
   };
 
+  const handleDescricaoChange = (e) => {
+    const tarefaAtualizada = {
+      ...tarefa,
+      descricao: e.target.value,
+    };
+    onEdit(tarefaAtualizada);
+  };
+
   return (
-    <TableRow>
-      <TableCell>
-        <div style={{ textAlign: "center" }}>
-          <Typography variant="body1">{tarefa.dataCriacao}</Typography>
-          <Checkbox
-            checked={tarefa.status === "Concluído"}
-            onChange={() => handleCheckboxChange(tarefa.id, tarefa.status)}
-          />
-        </div>
+    <TableRow
+      sx={{
+        backgroundColor: tarefa.status === "Concluído" ? "#f0f0f0" : "inherit",
+      }}
+    >
+      {/* Primeira coluna: menor */}
+      <TableCell sx={{ width: 120, textAlign: "center" }}>
+        <Typography variant="body1">{tarefa.dataCriacao}</Typography>
+        <Checkbox
+          checked={tarefa.status === "Concluído"}
+          onChange={handleCheckboxChange}
+        />
       </TableCell>
 
-      <TableCell>
+      {/* Coluna do meio: maior */}
+      <TableCell sx={{ width: "auto" }}>
         <Typography variant="subtitle1" fontWeight="bold">
           {tarefa.titulo}
         </Typography>
-        <Typography variant="body2">{tarefa.descricao}</Typography>
+
+        <TextField
+          value={tarefa.descricao}
+          onChange={handleDescricaoChange}
+          variant="standard"
+          multiline
+          fullWidth
+          InputProps={{ disableUnderline: true }}
+          inputProps={{ maxLength: 300 }}
+        />
       </TableCell>
 
-      <TableCell>
+      {/* Última coluna: ações + status */}
+      <TableCell sx={{ width: 150 }}>
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
           }}
         >
-          <div>
-            <IconButton color="primary" onClick={() => onEdit(tarefa)}>
-              <Edit />
-            </IconButton>
-            <IconButton color="error" onClick={() => onDelete(tarefa.id)}>
-              <Delete />
-            </IconButton>
-          </div>
-          <Typography variant="body2">{tarefa.status}</Typography>
+          <IconButton color="primary" onClick={() => onEdit(tarefa)}>
+            <Edit />
+          </IconButton>
+          <IconButton color="error" onClick={() => onDelete(tarefa.id)}>
+            <Delete />
+          </IconButton>
+
+          {/* Ícone de status */}
+          {tarefa.status === "Aberto" ? (
+            <FiberManualRecord style={{ color: "green" }} />
+          ) : (
+            <FiberManualRecord style={{ color: "GrayText" }} />
+          )}
         </div>
       </TableCell>
     </TableRow>
