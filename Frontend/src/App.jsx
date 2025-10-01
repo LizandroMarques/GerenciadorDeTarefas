@@ -3,6 +3,7 @@ import "./App.css";
 import NovaTarefa from "./components/NovaTarefa";
 import TarefasTabela from "./components/TarefasTabela";
 import { Snackbar, Alert } from "@mui/material";
+import { dataAtualFormatada } from "./utils/date";
 
 export default function App() {
   const [tarefas, setTarefas] = useState([]);
@@ -85,20 +86,17 @@ export default function App() {
                   );
                   if (!res.ok) throw new Error("Erro ao atualizar tarefa");
                 } else {
-                  // Cadastro
-                  const { titulo, descricao, status, dataCriacao } =
-                    tarefaAtualizada;
-                  const res = await fetch("http://localhost:3000/tarefas", {
+                  // Cadastro via POST
+                  await fetch("http://localhost:3000/tarefas", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                      titulo,
-                      descricao,
-                      status,
-                      dataCriacao,
+                      titulo: tarefaAtualizada.titulo,
+                      descricao: tarefaAtualizada.descricao,
+                      status: tarefaAtualizada.status,
+                      dataCriacao: dataAtualFormatada(),
                     }),
                   });
-                  if (!res.ok) throw new Error("Erro ao salvar tarefa");
                 }
 
                 // Atualiza a lista completa de tarefas
@@ -109,6 +107,7 @@ export default function App() {
                 alert("Erro ao salvar tarefa.");
               }
             }}
+            fetchTarefas={fetchTarefas} // <- ESSA LINHA É OBRIGATÓRIA
           />
         </section>
         <section id="central">

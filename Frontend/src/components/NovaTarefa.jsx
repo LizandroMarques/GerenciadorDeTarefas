@@ -8,6 +8,7 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
+import { dataAtualFormatada } from "../utils/date";
 
 function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
   const [titulo, setTitulo] = useState("");
@@ -48,7 +49,7 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
           dataCriacao: tarefaEmEdicao.dataCriacao,
         });
       } else {
-        // Cadastro via POST
+        // POST
         await fetch("http://localhost:3000/tarefas", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -56,14 +57,15 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
             titulo: titulo.trim(),
             descricao: descricao.trim(),
             status,
-            dataCriacao: new Date().toISOString(),
+            dataCriacao: dataAtualFormatada(),
           }),
         });
 
-        // Atualiza lista de tarefas chamando fetchTarefas do App
+        // Atualiza a lista de tarefas chamando fetchTarefas do App
         await fetchTarefas();
       }
 
+      // limpa campos
       setTitulo("");
       setDescricao("");
       setStatus("Aberto");
