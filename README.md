@@ -3,6 +3,7 @@
 # PROJETO 1: Gerenciador de Tarefas (BACKEND)
 
 ## Sobre o projeto
+
 Projeto desenvolvido em **Node.js + Express** que gerencia tarefas armazenadas em um arquivo **JSON**.  
 Possui estrutura organizada em **controllers, services, routes e middlewares**:
 
@@ -13,9 +14,11 @@ Possui estrutura organizada em **controllers, services, routes e middlewares**:
 Possui testes automatizados usando **Jest**.
 
 ## Versão do Node
+
 v22.19.0
 
 ## Tecnologias Backend
+
 - Node.js v22.19.0
 - Express 5.1.0
 - Babel-jest
@@ -24,40 +27,43 @@ v22.19.0
 - VSCode
 
 ## Observação importante
+
 Nesse repositório existem 2 projetos:
 
 1. Backend: API responsável por manipular a base de dados (arquivo JSON), localizado na pasta `Backend`.
 2. Frontend: Projeto frontend disponível no diretório `Frontend`.
+   **O projeto backend deverá ser executado primeiro e, em outro terminal, o projeto frontend.**
 
 ---
 
 ## Executando o projeto backend
-**O projeto backend deverá ser executado primeiro e, em outro terminal, o projeto frontend.**
 
 1. Instale o VSCode pelo link https://code.visualstudio.com/Download
 2. A versão do Node necessária é v22.19.0. Caso não tenha instalado, baixe [aqui](https://nodejs.org/dist/v22.19.0/node-v22.19.0-x64.msi).
-3. Clone o repositório:  
+3. Clone o repositório:
+   - Caso não tenha o git instalado:
+     - [windows](https://github.com/git-for-windows/git/releases/download/v2.51.0.windows.1/Git-2.51.0-64-bit.exe).
+     - [Demais SOs](https://git-scm.com/downloads)
    - git clone https://github.com/LizandroMarques/GerenciadorDeTarefas.git
 4. Abra o terminal, entre na pasta backend e instale as dependências:
    - cd Backend
    - npm install
-   
 5. Execute o projeto:
-	- node server.js
-   
+   - node server.js
    - Aparecerá no console a mensagem:  
      `"Servidor rodando em http://localhost:3000"`.
 
 ---
 
 ## Testes
+
 Foi utilizada a biblioteca **Jest** para criar uma suite de testes para a API.
 
 ### Para executar os testes:
+
 1. Estar dentro da pasta `Backend`.
 2. Executar:
    - npm test
-   
 3. Após finalizar, deverá aparecer o resultado de **1 suite executada com 6 testes passados com sucesso** (conforme print no diretório `Backend/testes/imagens`).
 
 **Observação:**  
@@ -66,11 +72,12 @@ Dentro do diretório `Backend/testes/postman` está a **collection do Postman** 
 ---
 
 ## Rotas principais
-- `GET /api/tasks` → lista todas as tarefas  
-- `POST /api/tasks` → cria nova tarefa  
-- `GET /api/tasks/:id` → busca tarefa por ID  
-- `PUT /api/tasks/:id` → atualiza tarefa  
-- `DELETE /api/tasks/:id` → exclui tarefa  
+
+- `GET /api/tasks` → lista todas as tarefas
+- `POST /api/tasks` → cria nova tarefa
+- `GET /api/tasks/:id` → busca tarefa por ID
+- `PUT /api/tasks/:id` → atualiza tarefa
+- `DELETE /api/tasks/:id` → exclui tarefa
 
 ---
 
@@ -78,25 +85,35 @@ Dentro do diretório `Backend/testes/postman` está a **collection do Postman** 
 
 GerenciadorDeTarefas/
 │
-├─ __testes__/
-│   ├─ imagens/
-│   ├─ postman/
-│   └─ tarefasController.test.js
+├─ **testes**/
+│ ├─ imagens/
+│ ├─ postman/
+│ └─ tarefasController.test.js
 │
 ├─ src/
-│   ├─ controllers/tarefasController.js
-│   ├─ json/tarefas.json
-│   ├─ middlewares/validateData.js
-│   ├─ routes/tarefas.js
-│   ├─ services/tarefasServices.js
-│   └─ utils/
+│ ├─ controllers/tarefasController.js
+│ ├─ json/tarefas.json
+│ ├─ middlewares/validateData.js
+│ ├─ routes/tarefas.js
+│ ├─ services/tarefasServices.js
+│ └─ utils/
 │
 ├─ app.js
 ├─ package.json
 └─ server.js
 
-
 ---
 
 # PROJETO 2: Gerenciador de Tarefas (FRONTEND)
 
+# Sobre o projeto
+
+Projeto desenvolvido em **Reack** e framework **Material UI**.
+
+## Executando o projeto backend
+
+1. Após clonar o projeto entrar na pasta frontend
+2. npm install
+3. npm run dev (vai rodar no endereço http://localhost:5173/)
+
+OBS.: Par funcionar primeiro deverá rodar a api backend para em outro terminar rodar o projeto frontend.
