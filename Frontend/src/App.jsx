@@ -4,18 +4,27 @@ import NovaTarefa from "./components/NovaTarefa";
 import TarefasTabela from "./components/TarefasTabela";
 import { Snackbar, Alert } from "@mui/material";
 import { dataAtualFormatada } from "./utils/date";
+import planilhaImg from "./assets/planilha.png";
 
 export default function App() {
   const [tarefas, setTarefas] = useState([]);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+  });
   const [tarefaEmEdicao, setTarefaEmEdicao] = useState(null);
 
-  // Função para buscar tarefas do backend
   const fetchTarefas = async () => {
     try {
       const res = await fetch("http://localhost:3000/tarefas");
       const data = await res.json();
       setTarefas(data);
+
+      setSnackbar({
+        open: true,
+        message: "Tarefa salva com sucesso!",
+      });
     } catch (err) {
       console.error("Erro ao buscar tarefas", err);
     }
@@ -34,13 +43,19 @@ export default function App() {
       const res = await fetch(`http://localhost:3000/tarefas/${id}`, {
         method: "DELETE",
       });
-
       if (!res.ok) throw new Error("Erro ao excluir tarefa");
-
       setTarefas((prev) => prev.filter((t) => t.id !== id));
-      setSnackbarOpen(true);
+
+      setSnackbar({
+        open: true,
+        message: "Tarefa excluída com sucesso!",
+      });
     } catch (err) {
       console.error(err);
+      setSnackbar({
+        open: true,
+        message: "Erro ao excluir tarefa.",
+      });
     }
   };
 
@@ -51,10 +66,8 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tarefaAtualizada),
       });
-
       if (!res.ok) throw new Error("Erro ao atualizar status");
-
-      await fetchTarefas(); // Recarrega a lista após atualização
+      await fetchTarefas();
     } catch (err) {
       console.error(err);
     }
@@ -62,20 +75,23 @@ export default function App() {
 
   return (
     <div id="windows">
-      <header id="header">
-        <h2>GERENCIADOR DE TAREFAS</h2>
-      </header>
-
       <aside id="divEsquerda"></aside>
-
       <main id="content">
+        <header id="header">
+          <img
+            src={planilhaImg}
+            alt="imagemPlanilha"
+            height={"100px"}
+            width={"100px"}
+          ></img>
+          <h2>GERENCIADOR DE TAREFAS</h2>
+        </header>
         <section id="topCentral">
           <NovaTarefa
             tarefaEmEdicao={tarefaEmEdicao}
             onSave={async (tarefaAtualizada) => {
               try {
                 if (tarefaAtualizada.id) {
-                  // Edição
                   const res = await fetch(
                     `http://localhost:3000/tarefas/${tarefaAtualizada.id}`,
                     {
@@ -86,28 +102,30 @@ export default function App() {
                   );
                   if (!res.ok) throw new Error("Erro ao atualizar tarefa");
                 } else {
-                  // Cadastro via POST
                   await fetch("http://localhost:3000/tarefas", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                      titulo: tarefaAtualizada.titulo,
-                      descricao: tarefaAtualizada.descricao,
-                      status: tarefaAtualizada.status,
+                      ...tarefaAtualizada,
                       dataCriacao: dataAtualFormatada(),
                     }),
                   });
                 }
-
-                // Atualiza a lista completa de tarefas
                 await fetchTarefas();
-                setTarefaEmEdicao(null); // limpa o formulário
+                setTarefaEmEdicao(null);
+                setSnackbar({
+                  open: true,
+                  message: "Tarefa salva com sucesso!",
+                });
               } catch (err) {
                 console.error(err);
-                alert("Erro ao salvar tarefa.");
+                setSnackbar({
+                  open: true,
+                  message: "Erro ao salvar tarefa.",
+                });
               }
             }}
-            fetchTarefas={fetchTarefas} // <- ESSA LINHA É OBRIGATÓRIA
+            fetchTarefas={fetchTarefas}
           />
         </section>
         <section id="central">
@@ -118,24 +136,20 @@ export default function App() {
             onToggleStatus={handleToggleStatus}
           />
         </section>
+        <footer id="footer">@2025 v1.0</footer>
       </main>
-
       <aside id="divDireita"></aside>
-
-      <footer id="footer">@2025 v1.0</footer>
-
       <Snackbar
-        open={snackbarOpen}
+        open={snackbar.open}
         autoHideDuration={3000}
-        onClose={() => setSnackbarOpen(false)}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert
-          onClose={() => setSnackbarOpen(false)}
-          severity="success"
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
           sx={{ width: "100%" }}
         >
-          Tarefa excluída com sucesso!
+          {snackbar.message}
         </Alert>
       </Snackbar>
     </div>

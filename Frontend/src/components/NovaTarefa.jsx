@@ -76,50 +76,53 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
   };
 
   return (
-    <Card sx={{ margin: 1, padding: 0 }}>
-      <CardContent>
-        <Grid container spacing={2} alignItems="flex-start">
-          <Grid item xs={12} sm={5} sx={{ width: "1300px" }}>
-            <Typography variant="subtitle1">Título</Typography>
-            <TextField
-              fullWidth
-              variant="outlined"
-              size="small"
-              placeholder="Digite o título, min 5 max 50 caracteres."
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-            />
+    <Grid container spacing={1} direction="column">
+      {/* Linha 1: Título */}
+      <Grid item>
+        <TextField
+          label="Título"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+        />
+      </Grid>
 
-            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
-              Descrição
-            </Typography>
-            <TextField
-              fullWidth
-              variant="outlined"
-              size="small"
-              placeholder="Digite a descrição, min 5 max 3000 caracteres."
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
+      {/* Linha 2: Descrição */}
+      <Grid item>
+        <TextField
+          label="Descrição"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
+        />
+      </Grid>
 
-            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
-              Status
-            </Typography>
+      {/* Linha 3: Status + Combo + Botão */}
+      <Grid item>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item>
             <TextField
               select
-              fullWidth
+              label="Status"
               variant="outlined"
               size="small"
+              style={{ width: 120 }}
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
               <MenuItem value="Aberto">Aberto</MenuItem>
               <MenuItem value="Concluído">Concluído</MenuItem>
             </TextField>
-
+          </Grid>
+          <Grid item>
             <Button
               variant="contained"
-              color="warning"
+              color="primary"
+              size="small"
               sx={{ marginTop: 1 }}
               onClick={handleSalvar}
             >
@@ -127,8 +130,8 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
             </Button>
           </Grid>
         </Grid>
-      </CardContent>
-    </Card>
+      </Grid>
+    </Grid>
   );
 }
 

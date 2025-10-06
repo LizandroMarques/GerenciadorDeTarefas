@@ -1,4 +1,3 @@
-// TarefasTable.jsx
 import React from "react";
 import {
   Table,
@@ -18,15 +17,24 @@ export default function TarefasTabela({
   onToggleStatus,
 }) {
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        {/* <TableHead>
-          <TableRow>
-            <TableCell>Data</TableCell>
-            <TableCell>Tarefa</TableCell>
-            <TableCell>Ações</TableCell>
-          </TableRow>
-        </TableHead> */}
+    <TableContainer
+      component={Paper}
+      sx={{
+        maxHeight: "400",
+        "&::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#00a8ff",
+          borderRadius: "1px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "#f0f0f0",
+        },
+        scrollbarColor: "#00a8ff #f0f0f0",
+      }}
+    >
+      <Table stickyHeader>
         <TableBody>
           {tarefas.map((t) => (
             <TarefaLinha
