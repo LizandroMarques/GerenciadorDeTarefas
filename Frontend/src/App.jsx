@@ -14,6 +14,7 @@ export default function App() {
     message: "",
   });
   const [tarefaEmEdicao, setTarefaEmEdicao] = useState(null);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const fetchTarefas = async () => {
     try {
@@ -21,10 +22,13 @@ export default function App() {
       const data = await res.json();
       setTarefas(data);
 
-      setSnackbar({
-        open: true,
-        message: "Tarefa salva com sucesso!",
-      });
+      //não mostrará o snackbar no primeiro carregamento
+      if (!isFirstRender) {
+        setSnackbar({
+          open: true,
+          message: "Tarefa salva com sucesso!",
+        });
+      }
     } catch (err) {
       console.error("Erro ao buscar tarefas", err);
     }
@@ -32,6 +36,7 @@ export default function App() {
 
   useEffect(() => {
     fetchTarefas();
+    setIsFirstRender(false); //setará a flag isFisrtRender para false para aparecer a mensagem quando salvar alguma tarefa
   }, []);
 
   const handleEdit = (tarefa) => {
