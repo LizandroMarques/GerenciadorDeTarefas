@@ -172,7 +172,9 @@ export default function App() {
               value={buscaTitulo}
               onChange={(e) => setBuscaTitulo(e.target.value)}
               sx={{
-                width: "800px",
+                width: "100%",
+                minWidth: "50px",
+                maxWidth: "800px",
                 marginRight: "10px",
               }}
             />
@@ -183,7 +185,7 @@ export default function App() {
               size="small"
               value={filtroStatus}
               onChange={(e) => setFiltroStatus(e.target.value)}
-              style={{ width: 150, marginRight: "10px" }}
+              style={{ maxWidth: 150, marginRight: "10px" }}
             >
               <MenuItem value="Todos">Todos</MenuItem>
               <MenuItem value="Aberto">Aberto</MenuItem>
@@ -196,7 +198,7 @@ export default function App() {
               size="small"
               value={ordem}
               onChange={(e) => setOrdem(e.target.value)}
-              style={{ width: 230 }}
+              style={{ maxWidth: 230 }}
             >
               <MenuItem value="dataDesc">Data (mais recente)</MenuItem>
               <MenuItem value="dataAsc">Data (mais antiga)</MenuItem>

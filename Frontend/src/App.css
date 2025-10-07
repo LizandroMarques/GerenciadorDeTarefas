@@ -84,6 +84,10 @@ body {
   padding: 10px;
   top: 0px;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 98.5%;
 }
 
 /* Footer sempre no final da coluna central */
