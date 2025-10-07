@@ -51,7 +51,7 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
         });
       } else {
         // POST
-        await fetch("http://localhost:3000/tarefas", {
+        await fetch(`${import.meta.env.VITE_API_URL}/tarefas`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

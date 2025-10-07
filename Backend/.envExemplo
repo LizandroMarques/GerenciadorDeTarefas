@@ -1,4 +1,4 @@
 # Deixei preenchido a constante pq é um projeto exemplo, mas em projetos profissionais o .envExemplo deve ficar somente com o nome das constantes, sem valor no git.
 
-PORT=3000
+PORT=3001
 URL=http://localhost
