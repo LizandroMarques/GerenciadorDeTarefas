@@ -19,6 +19,7 @@ export default function TarefasTabela({
   return (
     <TableContainer
       component={Paper}
+      elevation={0}
       sx={{
         maxHeight: "400",
         "&::-webkit-scrollbar": {

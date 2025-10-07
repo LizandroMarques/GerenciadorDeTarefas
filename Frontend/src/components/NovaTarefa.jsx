@@ -9,6 +9,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { dataAtualFormatada } from "../utils/date";
+import { Padding } from "@mui/icons-material";
 
 function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
   const [titulo, setTitulo] = useState("");
@@ -76,7 +77,15 @@ function NovaTarefa({ tarefaEmEdicao, onSave, fetchTarefas }) {
   };
 
   return (
-    <Grid container spacing={1} direction="column">
+    <Grid
+      container
+      spacing={1}
+      direction="column"
+      sx={{
+        backgroundColor: "#ffffffff",
+        padding: "10px",
+      }}
+    >
       {/* Linha 1: Título */}
       <Grid item>
         <TextField
