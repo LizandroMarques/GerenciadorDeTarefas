@@ -24,7 +24,7 @@ export default function App() {
 
   const fetchTarefas = async () => {
     try {
-      const res = await fetch("http://localhost:3000/tarefas");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tarefas`);
       const data = await res.json();
       setTarefas(data);
 
@@ -51,7 +51,7 @@ export default function App() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/tarefas/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tarefas/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Erro ao excluir tarefa");
@@ -72,7 +72,7 @@ export default function App() {
 
   const handleToggleStatus = async (id, tarefaAtualizada) => {
     try {
-      const res = await fetch(`http://localhost:3000/tarefas/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tarefas/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tarefaAtualizada),
@@ -129,7 +129,9 @@ export default function App() {
               try {
                 if (tarefaAtualizada.id) {
                   const res = await fetch(
-                    `http://localhost:3000/tarefas/${tarefaAtualizada.id}`,
+                    `${import.meta.env.VITE_API_URL}/tarefas/${
+                      tarefaAtualizada.id
+                    }`,
                     {
                       method: "PUT",
                       headers: { "Content-Type": "application/json" },
@@ -138,7 +140,7 @@ export default function App() {
                   );
                   if (!res.ok) throw new Error("Erro ao atualizar tarefa");
                 } else {
-                  await fetch("http://localhost:3000/tarefas", {
+                  await fetch(`${import.meta.env.VITE_API_URL}/tarefas`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

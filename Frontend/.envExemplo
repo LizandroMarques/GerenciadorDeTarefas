@@ -1,0 +1,3 @@
+# Deixei preenchido a constante pq é um projeto exemplo, mas em projetos profissionais o .envExemplo deve ficar somente com o nome das constantes, sem valor no git.
+
+VITE_API_URL=http://localhost:3000
